@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOGUEHUB — Fashion Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">V</div>
+      <div><strong>VOGUEHUB</strong><span>FASHION MARKETPLACE</span></div>
+    </div>
+    <button class="close-sidebar" id="closeSidebar" aria-label="Close menu">×</button>
+
+    <nav>
+      <p class="nav-label">DISCOVER</p>
+      <button class="nav-item active" data-category="All">⌂ <span>Home</span></button>
+      <button class="nav-item" data-category="New In">✦ <span>New In</span></button>
+      <button class="nav-item" data-category="Clothing">◈ <span>Clothing</span></button>
+      <button class="nav-item" data-category="Shoes">◇ <span>Shoes</span></button>
+      <button class="nav-item" data-category="Accessories">○ <span>Accessories</span></button>
+
+      <p class="nav-label">MY SPACE</p>
+      <button class="nav-item" id="wishlistNav">♡ <span>Wishlist</span><b id="wishCount">0</b></button>
+      <button class="nav-item" id="cartNav">🛒 <span>Cart</span><b id="cartCount">0</b></button>
+
+      <p class="nav-label seller-label">SELL ON VOGUEHUB</p>
+      <button class="nav-item seller-button" id="sellNav">＋ <span>Upload Product</span></button>
+      <button class="nav-item" id="dashboardNav">▣ <span>Seller Dashboard</span></button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <button class="nav-item" id="settingsBtn">⚙ <span>Settings</span></button>
+      <button class="profile-mini" id="profileBtn">
+        <div class="avatar" id="avatar">G</div>
+        <div><strong id="profileName">Guest</strong><span id="profileStatus">Sign in to continue</span></div>
+      </button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="mobile-logo">VOGUEHUB</div>
+      <div class="search-box">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Search brands, clothes, shoes...">
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="headerWish" title="Wishlist">♡<small id="headerWishCount">0</small></button>
+        <button class="icon-btn cart-icon" id="headerCart" title="Cart">🛒<small id="headerCartCount">0</small></button>
+        <button class="sign-in-btn" id="headerAuth">Sign in</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">THE NEW FASHION MARKETPLACE</p>
+        <h1>Wear what<br><em>moves you.</em></h1>
+        <p>Discover independent fashion brands and the pieces that make your style yours.</p>
+        <button class="primary-btn" id="shopNow">Explore collection <span>→</span></button>
+      </div>
+      <div class="hero-art">
+        <div class="hero-card card-one">NEW<br><strong>SEASON</strong></div>
+        <div class="hero-card card-two">CURATED<br><strong>FOR YOU</strong></div>
+        <div class="hero-circle">VH</div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CURATED FOR YOU</p>
+          <h2>Trending now</h2>
+        </div>
+        <div class="filter-row" id="filters">
+          <button class="filter active" data-filter="All">All</button>
+          <button class="filter" data-filter="Clothing">Clothing</button>
+          <button class="filter" data-filter="Shoes">Shoes</button>
+          <button class="filter" data-filter="Accessories">Accessories</button>
+        </div>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <div>⌕</div>
+        <h3>No pieces found</h3>
+        <p>Try another search or category.</p>
+      </div>
+    </section>
+
+    <section class="brands-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">DISCOVER LABELS</p>
+          <h2>Independent brands</h2>
+        </div>
+      </div>
+      <div class="brand-strip">
+        <div class="brand-tile"><span>01</span><strong>ATELIER<br>NOIR</strong></div>
+        <div class="brand-tile"><span>02</span><strong>FORME<br>STUDIO</strong></div>
+        <div class="brand-tile"><span>03</span><strong>RARE<br>THREADS</strong></div>
+        <div class="brand-tile"><span>04</span><strong>MONO<br>HOUSE</strong></div>
+      </div>
+    </section>
+
+    <footer>
+      <strong>VOGUEHUB</strong>
+      <span>A marketplace for independent fashion.</span>
+      <span>© 2026 VogueHub</span>
+    </footer>
+  </main>
+
+  <!-- Cart drawer -->
+  <section class="drawer" id="cartDrawer">
+    <div class="drawer-head"><div><p class="eyebrow">YOUR BAG</p><h2>Shopping cart</h2></div><button class="drawer-close" data-close="cartDrawer">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div><span>Subtotal</span><strong id="cartTotal">₦0</strong></div>
+      <button class="primary-btn full" id="checkoutBtn">Proceed to checkout →</button>
+      <small>Demo checkout — connect a payment provider for real transactions.</small>
+    </div>
+  </section>
+
+  <!-- Auth modal -->
+  <div class="modal-wrap" id="authModal">
+    <div class="modal">
+      <button class="modal-close" data-close="authModal">×</button>
+      <div class="auth-logo">VH</div>
+      <p class="eyebrow" id="authEyebrow">WELCOME BACK</p>
+      <h2 id="authTitle">Sign in</h2>
+      <p class="muted" id="authText">Access your cart, wishlist and seller tools.</p>
+      <form id="authForm">
+        <div class="field" id="nameField" hidden><label>Full name</label><input id="nameInput" type="text" placeholder="Your name"></div>
+        <div class="field"><label>Email</label><input id="emailInput" type="email" placeholder="you@example.com" required></div>
+        <div class="field"><label>Password</label><input id="passwordInput" type="password" placeholder="••••••••" required minlength="4"></div>
+        <button class="primary-btn full" type="submit" id="authSubmit">Sign in</button>
+      </form>
+      <button class="switch-auth" id="switchAuth">Don't have an account? <b>Create one</b></button>
+    </div>
+  </div>
+
+  <!-- Product modal -->
+  <div class="modal-wrap" id="productModal">
+    <div class="modal product-modal">
+      <button class="modal-close" data-close="productModal">×</button>
+      <div id="productDetail"></div>
+    </div>
+  </div>
+
+  <!-- Seller upload modal -->
+  <div class="modal-wrap" id="uploadModal">
+    <div class="modal upload-modal">
+      <button class="modal-close" data-close="uploadModal">×</button>
+      <p class="eyebrow">SELL ON VOGUEHUB</p>
+      <h2>Upload a product</h2>
+      <p class="muted">Add a piece to your storefront. In this demo it is saved in your browser.</p>
+      <form id="uploadForm">
+        <div class="field"><label>Product name</label><input id="uploadName" required placeholder="e.g. Oversized Essential Tee"></div>
+        <div class="form-row">
+          <div class="field"><label>Brand</label><input id="uploadBrand" required placeholder="Your brand"></div>
+          <div class="field"><label>Price (₦)</label><input id="uploadPrice" type="number" min="1" required placeholder="25000"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Category</label>
+            <select id="uploadCategory"><option>Clothing</option><option>Shoes</option><option>Accessories</option></select>
+          </div>
+          <div class="field"><label>Image URL</label><input id="uploadImage" type="url" placeholder="https://..."></div>
+        </div>
+        <div class="field"><label>Description</label><textarea id="uploadDescription" rows="3" placeholder="Tell buyers about this piece..."></textarea></div>
+        <button class="primary-btn full" type="submit">Publish product →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard modal -->
+  <div class="modal-wrap" id="dashboardModal">
+    <div class="modal dashboard-modal">
+      <button class="modal-close" data-close="dashboardModal">×</button>
+      <p class="eyebrow">SELLER CENTER</p>
+      <h2>Your dashboard</h2>
+      <div class="stats">
+        <div><strong id="statProducts">0</strong><span>Products</span></div>
+        <div><strong id="statOrders">0</strong><span>Orders</span></div>
+        <div><strong id="statRevenue">₦0</strong><span>Revenue</span></div>
+      </div>
+      <div class="dashboard-note"><strong>Next step</strong><p>Connect a real backend/database to store products and orders for all sellers.</p></div>
+      <button class="primary-btn full" id="dashboardUpload">＋ Upload another product</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/script.js"></script>
+</body>
+</html>

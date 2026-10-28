@@ -1,0 +1,16 @@
+# Local Claude/editor settings
+.claude/
+.vscode/
+
+# Secrets (never commit these)
+.env
+.env.*
+
+# Dependencies and build tools
+node_modules/
+.netlify/
+
+# OS junk
+Thumbs.db
+desktop.ini
+.DS_Store

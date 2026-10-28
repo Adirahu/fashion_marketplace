@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kloset — Shop independent Nigerian designers</title>
+  <meta name="description" content="Discover independent Nigerian fashion labels. Native wear, streetwear, occasion wear and more, ordered straight from the designer.">
+  <meta name="theme-color" content="#0D4A38">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kloset — Shop independent Nigerian designers">
+  <meta property="og:description" content="Native wear, streetwear, occasion wear and more, ordered straight from the designer.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1625646741211-711bdd65c570?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230D4A38'/%3E%3Cpath d='M19 16h7v13.5L38 16h9L34.5 30.5 48 48h-9l-9.5-12.6-3.5 3.9V48h-7z' fill='%23F2B33D'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Slide-out menu (all screen sizes) -->
+  <aside class="sidebar" id="sidebar" aria-label="Menu">
+    <div class="sidebar-head">
+      <a class="logo" href="#/">Kloset<span>.</span></a>
+      <button class="close-sidebar" id="closeSidebar" aria-label="Close menu">×</button>
+    </div>
+    <nav>
+      <p class="nav-label">Shop</p>
+      <button class="nav-item" data-category="All"><span>Home</span></button>
+      <button class="nav-item" data-category="New In"><span>New in</span></button>
+      <button class="nav-item" data-category="Clothing"><span>Clothing</span></button>
+      <button class="nav-item" data-category="Shoes"><span>Shoes</span></button>
+      <button class="nav-item" data-category="Accessories"><span>Accessories</span></button>
+
+      <p class="nav-label">Your space</p>
+      <button class="nav-item" data-category="Wishlist"><span>Wishlist</span><b data-count="wish">0</b></button>
+      <button class="nav-item" id="cartNav"><span>Bag</span><b data-count="cart">0</b></button>
+      <a class="nav-item" href="#/orders" data-view="orders"><span>My orders</span></a>
+
+      <p class="nav-label">For designers</p>
+      <a class="nav-item seller-button" href="#/sell" data-view="sell"><span data-sell-label>Sell on Kloset</span></a>
+      <a class="nav-item" href="#/admin" data-view="admin" id="adminNav" hidden><span>Review brands</span><b id="pendingCount" hidden>0</b></a>
+    </nav>
+    <div class="sidebar-bottom">
+      <button class="profile-mini" id="profileBtn">
+        <div class="avatar" id="avatar">G</div>
+        <div><strong id="profileName">Guest</strong><span id="profileStatus">Sign in to continue</span></div>
+      </button>
+    </div>
+  </aside>
+
+  <div class="demo-banner" id="demoBanner" hidden>
+    <strong>Demo mode</strong> Data is saved only in this browser. The first account you create becomes the admin. Follow SETUP.md to go live.
+  </div>
+  <div class="demo-banner error" id="errorBanner" hidden></div>
+  <div class="announce pattern">
+    <p>Independent Nigerian designers <i>·</i> Every brand reviewed<span class="wide-only"> <i>·</i> Chat with the brand before you pay</span></p>
+  </div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+      <a class="logo" href="#/">Kloset<span>.</span></a>
+      <nav class="main-nav" aria-label="Shop">
+        <button class="nav-item" data-category="New In">New in</button>
+        <button class="nav-item" data-category="Clothing">Clothing</button>
+        <button class="nav-item" data-category="Shoes">Shoes</button>
+        <button class="nav-item" data-category="Accessories">Accessories</button>
+        <button class="nav-item" data-action="go-brands">Brands</button>
+      </nav>
+      <label class="search-box">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="searchInput" type="search" placeholder="Search Ankara, sneakers, brands…" aria-label="Search">
+      </label>
+      <div class="top-actions">
+        <a class="sell-link" href="#/sell" data-view="sell" data-sell-label>Sell on Kloset</a>
+        <button class="icon-btn" id="headerWish" aria-label="Wishlist">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg>
+          <small data-count="wish">0</small>
+        </button>
+        <button class="icon-btn" id="headerCart" aria-label="Open bag">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg>
+          <small data-count="cart">0</small>
+        </button>
+        <button class="sign-in-btn" id="headerAuth">Sign in</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- Home -->
+    <div class="view" id="viewHome">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="hero-kicker"><span class="dot"></span> Made in Nigeria, worn everywhere</p>
+          <h1>Wear the <em>new</em> Nigerian label.</h1>
+          <p class="hero-sub">Discover independent designers from Lagos to Abuja and beyond. Order in a few taps, then chat with the brand directly on WhatsApp.</p>
+          <div class="hero-actions">
+            <button class="primary-btn big" id="shopNow">Shop now <span aria-hidden="true">→</span></button>
+            <a class="ghost-btn big" href="#/sell">Sell your brand</a>
+          </div>
+          <ul class="hero-points">
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>Every brand reviewed</li>
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.3A8 8 0 1 1 20 12Z"/></svg>Chat before you pay</li>
+          </ul>
+        </div>
+        <div class="hero-art">
+          <img class="hero-main" src="https://images.unsplash.com/photo-1625646741211-711bdd65c570?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Model in a red Ankara top and red hat">
+          <img class="hero-side" src="https://images.unsplash.com/photo-1653907912812-304d8ce1823b?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Model with an afro wearing Ankara and coral beads">
+          <span class="hero-tag">Native · Street · Occasion</span>
+        </div>
+      </section>
+
+      <section class="cats">
+        <div class="section-heading">
+          <div><p class="eyebrow">Shop by style</p><h2>What are you dressing for?</h2></div>
+        </div>
+        <div class="cat-grid">
+          <button class="cat-tile" data-action="shop" data-id="Clothing|Native wear"><img src="https://images.unsplash.com/photo-1661332306744-70f9ed1a7f40?auto=format&amp;fit=crop&amp;w=600&amp;h=800&amp;q=75" alt="" loading="lazy"><span>Native wear</span></button>
+          <button class="cat-tile" data-action="shop" data-id="Clothing|Occasion wear"><img src="https://images.unsplash.com/photo-1733324961705-97bd6cd7f4ba?auto=format&amp;fit=crop&amp;w=600&amp;h=800&amp;q=75" alt="" loading="lazy"><span>Occasion wear</span></button>
+          <button class="cat-tile" data-action="shop" data-id="Clothing|Streetwear"><img src="https://images.unsplash.com/photo-1651754336120-aaf84bd3f767?auto=format&amp;fit=crop&amp;w=600&amp;h=800&amp;q=75" alt="" loading="lazy"><span>Streetwear</span></button>
+          <button class="cat-tile" data-action="shop" data-id="Clothing|Corporate wear"><img src="https://images.unsplash.com/photo-1641932156899-a9a319476799?auto=format&amp;fit=crop&amp;w=600&amp;h=800&amp;q=75" alt="" loading="lazy"><span>Corporate</span></button>
+          <button class="cat-tile" data-action="shop" data-id="Shoes"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&amp;fit=crop&amp;w=600&amp;h=800&amp;q=75" alt="" loading="lazy"><span>Shoes</span></button>
+          <button class="cat-tile" data-action="shop" data-id="Accessories"><img src="https://images.unsplash.com/photo-1554022710-0488a6ae4db4?auto=format&amp;fit=crop&amp;w=600&amp;h=800&amp;q=75" alt="" loading="lazy"><span>Accessories</span></button>
+        </div>
+      </section>
+
+      <section class="content" id="shop">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" id="gridEyebrow">Curated for you</p>
+            <h2 id="gridTitle">Trending now</h2>
+          </div>
+          <div class="filter-row" id="filters">
+            <button class="filter active" data-filter="All">All</button>
+            <button class="filter" data-filter="Clothing">Clothing</button>
+            <button class="filter" data-filter="Shoes">Shoes</button>
+            <button class="filter" data-filter="Accessories">Accessories</button>
+          </div>
+        </div>
+        <div class="clothing-style-row" id="clothingStyles" aria-label="Filter clothing by style" hidden>
+          <button class="style-filter active" data-style="All">All clothing</button>
+          <button class="style-filter" data-style="Native wear">Native wear</button>
+          <button class="style-filter" data-style="Streetwear">Streetwear</button>
+          <button class="style-filter" data-style="Corporate wear">Corporate wear</button>
+          <button class="style-filter" data-style="Casual wear">Casual wear</button>
+          <button class="style-filter" data-style="Occasion wear">Occasion wear</button>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+        <div class="empty-state" id="emptyState" hidden></div>
+      </section>
+
+      <section class="how">
+        <div class="section-heading center">
+          <div><p class="eyebrow">How Kloset works</p><h2>Straight from the designer to you</h2></div>
+        </div>
+        <ol class="how-steps">
+          <li><strong>Discover</strong><span>Browse pieces from independent Nigerian labels, all in one place.</span></li>
+          <li><strong>Order</strong><span>Pick your size, add to bag and place your order in seconds.</span></li>
+          <li><strong>Chat</strong><span>The brand contacts you on WhatsApp to confirm payment and delivery.</span></li>
+          <li><strong>Wear it</strong><span>Your piece arrives, made by the people who designed it.</span></li>
+        </ol>
+      </section>
+
+      <section class="brands-section" id="brands">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">The labels</p>
+            <h2>Meet the designers</h2>
+          </div>
+        </div>
+        <div class="brand-strip" id="brandStrip"></div>
+      </section>
+
+      <section class="seller-band">
+        <div class="seller-band-copy pattern">
+          <p class="eyebrow light">For designers</p>
+          <h2>Your label deserves a <em>bigger</em> audience.</h2>
+          <ul>
+            <li>Your own store page to share on Instagram and WhatsApp</li>
+            <li>Orders arrive in your dashboard with the buyer's phone and address</li>
+            <li>Manage everything from your phone</li>
+          </ul>
+          <a class="primary-btn gold big" href="#/sell">Open your store <span aria-hidden="true">→</span></a>
+        </div>
+        <img src="https://images.unsplash.com/photo-1791394867741-6790be751370?auto=format&amp;fit=crop&amp;w=900&amp;q=75" alt="Two women in blue and white adire outfits" loading="lazy">
+      </section>
+    </div>
+
+    <!-- Brand storefront -->
+    <div class="view" id="viewBrand" hidden></div>
+    <!-- Seller area -->
+    <div class="view" id="viewSell" hidden></div>
+    <!-- Buyer orders -->
+    <div class="view" id="viewOrders" hidden></div>
+    <!-- Admin -->
+    <div class="view" id="viewAdmin" hidden></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="logo light" href="#/">Kloset<span>.</span></a>
+        <p>A marketplace for independent Nigerian fashion.</p>
+      </div>
+      <div>
+        <strong>Shop</strong>
+        <button data-action="shop" data-id="New In">New in</button>
+        <button data-action="shop" data-id="Clothing">Clothing</button>
+        <button data-action="shop" data-id="Shoes">Shoes</button>
+        <button data-action="shop" data-id="Accessories">Accessories</button>
+      </div>
+      <div>
+        <strong>For designers</strong>
+        <a href="#/sell">Sell on Kloset</a>
+        <a href="#/sell">Seller dashboard</a>
+      </div>
+      <div>
+        <strong>Your account</strong>
+        <a href="#/orders">My orders</a>
+        <button data-action="shop" data-id="Wishlist">Wishlist</button>
+      </div>
+    </div>
+    <p class="footer-legal">© 2026 Kloset</p>
+  </footer>
+
+  <!-- Phone tab bar -->
+  <nav class="bottom-nav" aria-label="Quick links">
+    <button class="nav-item" data-category="All"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg><span>Home</span></button>
+    <button id="bottomSearch"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search</span></button>
+    <button class="nav-item" data-category="Wishlist"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg><span>Saved</span><b data-count="wish">0</b></button>
+    <button id="bottomBag"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span>Bag</span><b data-count="cart">0</b></button>
+    <button id="bottomAccount"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Account</span></button>
+  </nav>
+
+  <!-- Cart drawer -->
+  <section class="drawer" id="cartDrawer" aria-label="Shopping bag">
+    <div class="drawer-head"><div><p class="eyebrow">Your bag</p><h2>Shopping bag</h2></div><button class="drawer-close" id="closeCart" aria-label="Close bag">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div><span>Subtotal</span><strong id="cartTotal">₦0</strong></div>
+      <button class="primary-btn full big" id="checkoutBtn">Proceed to checkout →</button>
+      <small>No payment is taken on the site. Each brand contacts you to arrange payment and delivery.</small>
+    </div>
+  </section>
+
+  <!-- Sign in / sign up / reset -->
+  <div class="modal-wrap" id="authModal">
+    <div class="modal">
+      <button class="modal-close" data-close="authModal" aria-label="Close">×</button>
+      <div class="auth-logo">K</div>
+      <p class="eyebrow" id="authEyebrow">Welcome back</p>
+      <h2 id="authTitle">Sign in</h2>
+      <p class="muted" id="authText">Access your bag, orders and seller tools.</p>
+      <form id="authForm">
+        <div class="field" id="nameField" hidden><label for="nameInput">Full name</label><input id="nameInput" type="text" autocomplete="name" maxlength="80" placeholder="Your name"></div>
+        <div class="field"><label for="emailInput">Email</label><input id="emailInput" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+        <div class="field" id="passwordField"><label for="passwordInput">Password</label><input id="passwordInput" type="password" autocomplete="current-password" placeholder="Your password" required></div>
+        <button class="link-btn forgot" type="button" id="forgotBtn">Forgot password?</button>
+        <button class="primary-btn full big" type="submit" id="authSubmit">Sign in</button>
+      </form>
+      <button class="switch-auth" id="switchAuth" type="button">Don't have an account? <b>Create one</b></button>
+    </div>
+  </div>
+
+  <!-- Set a new password -->
+  <div class="modal-wrap" id="passwordModal">
+    <div class="modal">
+      <button class="modal-close" data-close="passwordModal" aria-label="Close">×</button>
+      <p class="eyebrow">Account security</p>
+      <h2>New password</h2>
+      <p class="muted">Choose a password with at least 8 characters.</p>
+      <form id="passwordForm">
+        <div class="field"><label for="newPassword">New password</label><input id="newPassword" type="password" autocomplete="new-password" minlength="8" required></div>
+        <div class="field"><label for="confirmPassword">Confirm password</label><input id="confirmPassword" type="password" autocomplete="new-password" minlength="8" required></div>
+        <button class="primary-btn full big" type="submit" id="passwordSubmit">Save password</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Account -->
+  <div class="modal-wrap" id="accountModal">
+    <div class="modal">
+      <button class="modal-close" data-close="accountModal" aria-label="Close">×</button>
+      <p class="eyebrow">Your account</p>
+      <h2 id="accountName">Account</h2>
+      <p class="muted" id="accountEmail"></p>
+      <form id="profileForm">
+        <div class="form-row">
+          <div class="field"><label for="profileNameInput">Full name</label><input id="profileNameInput" maxlength="80" autocomplete="name" required></div>
+          <div class="field"><label for="profilePhoneInput">Phone / WhatsApp</label><input id="profilePhoneInput" type="tel" maxlength="20" autocomplete="tel" placeholder="0803 000 0000"></div>
+        </div>
+        <button class="primary-btn full" type="submit" id="profileSubmit">Save details</button>
+      </form>
+      <div class="account-links">
+        <a href="#/orders" data-close="accountModal">My orders</a>
+        <a href="#/sell" data-close="accountModal" id="accountSellLink">Sell on Kloset</a>
+        <a href="#/admin" data-close="accountModal" id="accountAdminLink" hidden>Review brands</a>
+        <button class="link-btn" type="button" data-action="change-password">Change password</button>
+        <button class="link-btn danger" type="button" data-action="sign-out">Sign out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product detail -->
+  <div class="modal-wrap" id="productModal">
+    <div class="modal product-modal">
+      <button class="modal-close" id="closeProduct" aria-label="Close">×</button>
+      <div id="productDetail"></div>
+    </div>
+  </div>
+
+  <!-- Add / edit product -->
+  <div class="modal-wrap" id="productFormModal">
+    <div class="modal upload-modal">
+      <button class="modal-close" data-close="productFormModal" aria-label="Close">×</button>
+      <p class="eyebrow">Your store</p>
+      <h2 id="productFormTitle">Add a product</h2>
+      <p class="muted">Clear photos and honest descriptions help your pieces sell.</p>
+      <form id="productForm">
+        <div class="field"><label for="pfName">Product name</label><input id="pfName" required minlength="2" maxlength="80" placeholder="Ankara wrap dress"></div>
+        <div class="form-row">
+          <div class="field"><label for="pfPrice">Price (₦)</label><input id="pfPrice" type="number" min="100" max="50000000" step="1" required placeholder="25000"></div>
+          <div class="field"><label for="pfCategory">Category</label>
+            <select id="pfCategory"><option>Clothing</option><option>Shoes</option><option>Accessories</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field" id="pfStyleField"><label for="pfStyle">Clothing style</label>
+            <select id="pfStyle"><option>Native wear</option><option>Streetwear</option><option>Corporate wear</option><option>Casual wear</option><option>Occasion wear</option></select>
+          </div>
+          <div class="field"><label for="pfSizes">Sizes (separate with commas)</label><input id="pfSizes" maxlength="120" placeholder="S, M, L, XL"></div>
+        </div>
+        <div class="field">
+          <label for="pfImages">Photos (up to 4, the first is the cover)</label>
+          <input id="pfImages" type="file" accept="image/*" multiple>
+          <div class="thumbs" id="pfPreview"></div>
+        </div>
+        <div class="field"><label for="pfDescription">Description</label><textarea id="pfDescription" rows="4" maxlength="1500" placeholder="Fabric, fit, care, delivery time…"></textarea></div>
+        <label class="check"><input type="checkbox" id="pfActive" checked> Show this product in my store</label>
+        <button class="primary-btn full big" type="submit" id="pfSubmit">Save product →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Checkout -->
+  <div class="modal-wrap" id="checkoutModal">
+    <div class="modal checkout-modal">
+      <button class="modal-close" data-close="checkoutModal" aria-label="Close">×</button>
+      <p class="eyebrow">Checkout</p>
+      <h2>Place your order</h2>
+      <p class="muted">No payment is taken on Kloset. Each brand will contact you on WhatsApp or by phone to confirm payment and delivery.</p>
+      <div id="checkoutSummary"></div>
+      <form id="checkoutForm">
+        <div class="form-row">
+          <div class="field"><label for="coName">Full name</label><input id="coName" required maxlength="80" autocomplete="name"></div>
+          <div class="field"><label for="coPhone">Phone / WhatsApp</label><input id="coPhone" type="tel" required maxlength="20" autocomplete="tel" placeholder="0803 000 0000"></div>
+        </div>
+        <div class="field"><label for="coAddress">Delivery address</label><input id="coAddress" required maxlength="300" autocomplete="street-address" placeholder="House number, street, area"></div>
+        <div class="form-row">
+          <div class="field"><label for="coCity">City / town</label><input id="coCity" required maxlength="60" autocomplete="address-level2"></div>
+          <div class="field"><label for="coState">State</label><select id="coState" required></select></div>
+        </div>
+        <div class="field"><label for="coNote">Note to the brand (optional)</label><textarea id="coNote" rows="2" maxlength="500" placeholder="Preferred delivery time, measurements…"></textarea></div>
+        <button class="primary-btn full big" type="submit" id="coSubmit">Place order →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Order placed -->
+  <div class="modal-wrap" id="successModal">
+    <div class="modal">
+      <button class="modal-close" data-close="successModal" aria-label="Close">×</button>
+      <div class="success-mark">✓</div>
+      <p class="eyebrow">Order sent</p>
+      <h2>Thank you!</h2>
+      <p class="muted">Your order has been sent. The brand will contact you to confirm payment and delivery, or you can message them now.</p>
+      <div id="successOrders"></div>
+      <a class="primary-btn full center" href="#/orders" data-close="successModal">View my orders</a>
+    </div>
+  </div>
+
+  <!-- General notice -->
+  <div class="modal-wrap" id="noticeModal">
+    <div class="modal">
+      <button class="modal-close" data-close="noticeModal" aria-label="Close">×</button>
+      <div class="success-mark">✉</div>
+      <h2 id="noticeTitle"></h2>
+      <p class="muted" id="noticeText"></p>
+      <button class="primary-btn full" type="button" data-close="noticeModal">OK</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
